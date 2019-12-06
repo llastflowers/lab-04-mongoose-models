@@ -13,114 +13,40 @@ describe('Cat Model', () => {
     });
   });
 
-  //   describe('name', () => {
-  //     it('is required', () => {
-  //       const cat = new Cat({
-  //         name: 'red',
-  //         green: 0,
-  //         blue: 0
-  //       });
+  describe('age', () => {
+    it('is required', () => {
+      const cat = new Cat({
+        name: 'Willow',
+        color: 'black and white'
+      });
 
-  //       const { errors } = color.validateSync();
-  //       expect(errors.red.message).toEqual('Path `red` is required.');
-  //     });
+      const { errors } = cat.validateSync();
+      expect(errors.age.message).toEqual('Path `age` is required.');
+    });
+  });
 
-  //     it('is over 0', () => {
-  //       const color = new Color({
-  //         name: 'red',
-  //         red: -1,
-  //         green: 0,
-  //         blue: 0
-  //       });
+  it('is over 0', () => {
+    const cat = new Cat({
+      name: 'Willow',
+      age: -1,
+      color: 'black and white'
+    });
 
-  //       const { errors } = color.validateSync();
-  //       expect(errors.red.message).toEqual('Path `red` (-1) is less than minimum allowed value (0).');
-  //     });
+    const { errors } = cat.validateSync();
+    expect(errors.age.message).toEqual('Path `age` (-1) is less than minimum allowed value (0).');
+  });
 
-  //     it('is under 256', () => {
-  //       const color = new Color({
-  //         name: 'red',
-  //         red: 256,
-  //         green: 0,
-  //         blue: 0
-  //       });
+  describe('color', () => {
+    it('is a string', () => {
+      const cat = new Cat({
+        name: 'Willow',
+        age: 3,
+        color: {}
+      });
 
-  //       const { errors } = color.validateSync();
-  //       expect(errors.red.message).toEqual('Path `red` (256) is more than maximum allowed value (255).');
-  //     });
-  //   });
-
-  //   describe('green', () => {
-  //     it('is required', () => {
-  //       const color = new Color({
-  //         name: 'red',
-  //         red: 255,
-  //         blue: 0
-  //       });
-
-  //       const { errors } = color.validateSync();
-  //       expect(errors.green.message).toEqual('Path `green` is required.');
-  //     });
-
-  //     it('is over 0', () => {
-  //       const color = new Color({
-  //         name: 'red',
-  //         red: 255,
-  //         green: -1,
-  //         blue: 0,
-  //       });
-
-  //       const { errors } = color.validateSync();
-  //       expect(errors.green.message).toEqual('Path `green` (-1) is less than minimum allowed value (0).');
-  //     });
-
-  //     it('is under 256', () => {
-  //       const color = new Color({
-  //         name: 'red',
-  //         red: 255,
-  //         green: 256,
-  //         blue: 0
-  //       });
-
-  //       const { errors } = color.validateSync();
-  //       expect(errors.green.message).toEqual('Path `green` (256) is more than maximum allowed value (255).');
-  //     });
-  //   });
-
-  //   describe('blue', () => {
-  //     it('is required', () => {
-  //       const color = new Color({
-  //         name: 'red',
-  //         red: 255,
-  //         green: 0
-  //       });
-
-  //       const { errors } = color.validateSync();
-  //       expect(errors.blue.message).toEqual('Path `blue` is required.');
-  //     });
-
-  //     it('is over 0', () => {
-  //       const color = new Color({
-  //         name: 'red',
-  //         red: 255,
-  //         green: 0,
-  //         blue: -1
-  //       });
-
-  //       const { errors } = color.validateSync();
-  //       expect(errors.blue.message).toEqual('Path `blue` (-1) is less than minimum allowed value (0).');
-  //     });
-
-  //     it('is under 256', () => {
-  //       const color = new Color({
-  //         name: 'red',
-  //         red: 255,
-  //         green: 0,
-  //         blue: 256
-  //       });
-
-//       const { errors } = color.validateSync();
-//       expect(errors.blue.message).toEqual('Path `blue` (256) is more than maximum allowed value (255).');
-//     });
-//   });
+      const { errors } = cat.validateSync();
+      // eslint-disable-next-line no-use-before-define
+      expect(errors.color.message).toEqual('Cast to String failed for value \"{}\" at path \"color\"');
+    });
+  });
 });
